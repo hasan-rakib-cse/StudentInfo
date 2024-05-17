@@ -1,0 +1,43 @@
+﻿@model List<StudentInfo.Models.Student>
+@{
+    ViewData["Title"] = "StudentList";
+}
+
+<h1 class="alert alert-primary text-center">Student List</h1>
+
+<table class="table tavle table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Subscribed</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.Email</td>
+                <td>@student.Phone</td>
+                @{
+                    if (student.Subscribed == true)
+                    {
+                        <td>Yes</td>
+                    }
+                    else
+                    {
+                        <td>No</td>
+                    }
+                }
+                <td class="text-end">
+                    <a class="btn btn-sm btn-warning" asp-controller="Students" asp-action="Edit" asp-route-id="@student.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
